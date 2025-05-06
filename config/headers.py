@@ -10,3 +10,4 @@ class Headers:
     basic = {
         "api_key": f"{os.getenv('API_TOKEN')}"
     }
+    
