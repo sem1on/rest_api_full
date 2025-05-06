@@ -27,3 +27,14 @@ class UserAPI(Helper):
         self.attach_response(response.json())
         model = UserModel(**response.json())
         return model
+    
+    @allure.step("Get user by User name")
+    def get_user_by_username(self, username):
+        response = requests.get(
+            url=self.endpoints.get_user_by_user_name(username),
+            headers=self.headers.basic,
+        )
+        assert response.status_code == 200
+        self.attach_response(response.json())
+        model = UserModel(**response.json())
+        return model
