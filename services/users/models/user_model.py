@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class UserModel(BaseModel):
@@ -10,3 +10,11 @@ class UserModel(BaseModel):
     password: str
     phone: str
     userStatus: int
+
+
+    @field_validator("id", "username","email", "username")
+    def field_are_not_empty(cls, value):
+        if value == "" or value is None:
+            raise ValueError("Field is empty")
+        else:
+            return value
